@@ -1,21 +1,20 @@
-class Circulo{
+export class Circulo{
     private _radio:number
 
-    public constructor(radio:number){
+    constructor(radio:number){
         this._radio = radio
     }
 
-    public get radio(){
+    get radio(){
         return this._radio
     }
 
-    public getPerimetro(){
+    perimetro(){
         return 2*Math.PI*this._radio
     }
 
-    public getArea(){
+    area(){
         return Math.PI*(this._radio*this._radio)
     }
 
-}   
-export{Circulo}
+}

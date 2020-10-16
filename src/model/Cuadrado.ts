@@ -1,21 +1,20 @@
-class Cuadrado{
+export class Cuadrado{
     private _lado: number
 
-    public constructor(lado : number){
+    constructor(lado : number){
         this._lado = lado
     }
 
-    public get lado(){
+    get lado(){
         return this._lado
     }
 
-    public getPerimetro(){
+    perimetro(){
         return this._lado*4
     }
 
-    public getArea(){
+    area(){
         return (this._lado*this._lado)
     }
 
 }
-export{Cuadrado}
