@@ -2,13 +2,15 @@ export class Triangulo{
     private _base: number
     private _lado2: number
     private _lado3: number
-    private _altura: number
+    private "_altura": number
 
-    constructor(base : number, lado2 : number, lado3 : number, altura : number){
+    constructor(base : number, lado2 : number, lado3 : number
+        
+        ){
         this._base = base
         this._lado2 = lado2
         this._lado3 = lado3
-        this._altura = altura
+    //    this._altura = altura
     }
 
     get base(){
@@ -28,13 +30,33 @@ export class Triangulo{
     }
 
     set altura(_altura: number){
+        /*
+            Si la altura no es la permitida
+            levantamos una excepción con throw y su mensaje
+            En otro caso asignamos la altura al triángulo
+        */
+        if (_altura <= 0){
+            throw "Altura incorrecta, debe ser > 0"
+        }
         this._altura = _altura
     }
+    /*
+    Si el método no puede hacer su trabajo levanta una excepción con throw
+    y se interrumpe su ejecución en ese punto
+    */
     perimetro(){
-        return this._base+this._lado2+this._lado3
+        let perimetro: number
+        perimetro = this._base+this._lado2+this._lado3
+        if (perimetro == 0){
+            throw "Triángulo no creado"
+        }
+        return perimetro
     }
 
     area(){
+        if (isNaN(this._altura)){
+            throw "Altura no asignada"
+        }
         return (this._base*this._altura)/2
     }
 

@@ -21,7 +21,8 @@ const main = async () => {
                 lado1 =  parseInt( await leerTeclado('Introduzca otro lado del triángulo'))
                 lado2 =  parseInt( await leerTeclado('Introduzca el último lado del triángulo'))
 
-                triangulo = new Triangulo(base, lado1, lado2, altura)
+                triangulo = new Triangulo(base, lado1, lado2)
+                triangulo.altura = altura
 
                 console.log(`Perímetro del triángulo= ${triangulo.perimetro()} cm`)
                 console.log(`Área del triángulo= ${triangulo.area()} cm2`)
@@ -57,7 +58,7 @@ const main = async () => {
                 console.log('TRIÁNGULOV2')
                 let nv2: number
                 let basev2: number, alturav2: number, lado1v2: number, lado2v2: number
-                let triangulov2: Triangulo = new Triangulo(0,0,0,0,)
+                let triangulov2: Triangulo = new Triangulo(0,0,0)
 
                 do {
                     nv2 = await menuTriangulo()
@@ -67,13 +68,46 @@ const main = async () => {
                             alturav2 =  parseInt( await leerTeclado('Introduzca la altura del triángulo'))
                             lado1v2 =  parseInt( await leerTeclado('Introduzca otro lado del triángulo'))
                             lado2v2 =  parseInt( await leerTeclado('Introduzca el último lado del triángulo'))
-                            triangulov2 = new Triangulo(basev2, lado1v2, lado2v2, alturav2)
+                            triangulov2 = new Triangulo(basev2, lado1v2, lado2v2)
+                            /*
+                                Invocamos al método altura
+                                si salta la excepción nos vamos a la 
+                                parte del catch.
+                                En este caso comunicamos el error
+                                e inicializamos el triángulo 
+                            */
+                            try {
+                                triangulov2.altura = alturav2
+                            }catch(error){
+                                console.log(error)
+                                triangulov2 = new Triangulo(0,0,0)
+                            }
                             break
                         case 2:
-                            console.log(`Área del triángulo= ${triangulov2.area()} cm2`)
+                            /*
+                            Invocamos al método area
+                            si no salta la excepción (throw)
+                            mostramos el área
+                            en otro caso damos el mensaje correspondiente
+
+                            */
+
+                            try{
+                                let area = triangulov2.area()
+                                console.log(`Área del triángulo= ${area} cm2`)
+                            }catch (e){
+                                console.log("No ha entrado en la opción 1: " + e)
+                            }
                             break
                         case 3:
-                            console.log(`Perímetro del triángulo= ${triangulov2.perimetro()} cm`)
+                            try{
+                                let perimetro = triangulov2.perimetro()
+                                console.log(`Perímetro del triángulo= ${perimetro} cm`)
+                            }catch (e){
+                                console.log("No ha entrado en la opción 1: " + e)
+                            }
+                            
+                            
                             break
                         case 4:
                             alturav2 =  parseInt( await leerTeclado('Introduzca la altura del triángulo'))
